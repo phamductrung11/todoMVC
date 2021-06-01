@@ -1,0 +1,20 @@
+<footer class="footer">
+  <span class="todo-count">
+      <strong>{{length}}</strong>
+      <span> </span>
+      <span>Items</span>
+      <span> left</span>
+  </span>
+  <ul class="filters" >
+    <li  *ngFor="let item of filterBtn ">
+      <a
+          [routerLink]="['/']"
+          [class]="item.isActived ?'selected':''"
+          (click)="handleClick(item.title)"
+      >
+      {{item.title}}
+      </a>
+  </li>
+  </ul>
+  <button class="clear-completed" >Clear completed</button>
+</footer>

@@ -1,0 +1,23 @@
+<li [class.editing]="editing" [class.completed]="item.isCompleted">
+
+    <ng-container *ngIf="!editing; else formEditing">
+
+      <div class="view" >
+      <input class="toggle" type="checkbox" (click)="updateCheckBox.emit()" [checked]="item.isCompleted"  />
+      <label  (dblclick)="OnEditing()">{{item.text  }}</label>
+      <button class="destroy" (click)="delete.emit()"></button>
+    </div>
+    </ng-container>
+    <ng-template #formEditing>
+      <input
+      #updateForm
+      class="edit"
+      type="text"
+      [value]="item.text"
+      (keyup.enter)="Onupdate(updateForm,item)"
+      />
+    </ng-template>
+
+
+    </li>
+
