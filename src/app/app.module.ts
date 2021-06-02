@@ -11,7 +11,7 @@ import { TodoComponent } from './components/todo/todo.component';
 import { TodolistComponent } from './components/todolist/todolist.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TaskTodoComponent } from './components/task-todo/task-todo.component';
-import { FormatDataPipe } from './pipes/format-data.pipe';
+import { FilterPipe } from './pipes/filter.pipe';
 
 
 const appRoute : Routes =[
@@ -35,7 +35,7 @@ const appRoute : Routes =[
     TodolistComponent,
     FooterComponent,
     TaskTodoComponent,
-    FormatDataPipe
+    FilterPipe
   ],
   imports: [
     BrowserModule,

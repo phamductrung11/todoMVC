@@ -7,8 +7,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class TodolistComponent implements OnInit {
 @Input() todoItem :any;
-@Input() isComplete :string;
-@Input() sortBy :boolean;
+@Input() Filters :string;
+@Input() ClearCompleted :string;
 @Output('delete') delete= new EventEmitter;
 @Output('update') update = new EventEmitter;
 @Output('updateCheckBox') updateCheckBox= new EventEmitter;

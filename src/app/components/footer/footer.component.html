@@ -10,11 +10,11 @@
       <a
           [routerLink]="['/']"
           [class]="item.isActived ?'selected':''"
-          (click)="handleClick(item.title)"
+          (click)="handleClick(item.title )"
       >
       {{item.title}}
       </a>
   </li>
   </ul>
-  <button class="clear-completed" >Clear completed</button>
+  <button class="clear-completed"  >Clear completed</button>
 </footer>

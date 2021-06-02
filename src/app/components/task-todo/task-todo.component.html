@@ -1,12 +1,12 @@
 <div class="todoapp">
   <app-header (AddTodo)="onAddTodo($event)" ></app-header>
   <app-todolist
+
    [todoItem]="this.toDo"
-   [sortBy]="this.sortBy"
-   [isComplete]="this.key"
+   [Filters]="this.Filter"
     (delete)="onDelete($event)"
     (update)="onUpdate($event)"
      (updateCheckBox)="updateCheckBox($event)"></app-todolist>
-  <app-footer [lengthTodo]="this.length" (sortBy)="handSortBy($event)"></app-footer>
+  <app-footer [lengthTodo]="this.length" (Filters)="handFilter($event)"></app-footer>
 
 </div>

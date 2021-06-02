@@ -10,8 +10,8 @@ import {ToDo} from '../../models/todo';
 export class TaskTodoComponent implements OnInit,OnDestroy {
   public toDo  =[];
   public length :number=0;
-  public key : string ;
-  public sortBy : boolean = false;
+  public Filter : string ;
+
   public numberItems:number=0;
   public subscription : Subscription;
   constructor(
@@ -19,19 +19,17 @@ export class TaskTodoComponent implements OnInit,OnDestroy {
   ){
 
   }
-  handSortBy(isComplete:string){
-  this.key=isComplete
-  this.sortBy=!this.sortBy
+  handFilter(filter:string){
+   this.Filter=filter;
+
 
     }
   ngOnInit(){
     this.updateLenght();
     this.loadData();
-    this.updateNumberItems();
-  }
-  updateNumberItems(){
 
   }
+
   updateLenght(){
     this.subscription = this.todoService.getAllTodo().subscribe((data : ToDo[])=>{
       this.length=data.length;
@@ -77,6 +75,7 @@ export class TaskTodoComponent implements OnInit,OnDestroy {
   onUpdate(data:ToDo){
     this.subscription = this.todoService.update(data).subscribe((data : ToDo[]) =>{
     this.updateTodo(data);
+    this.updateLenght();
     },error=>{
      this.todoService.handleError(error);
     });

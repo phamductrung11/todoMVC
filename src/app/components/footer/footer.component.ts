@@ -6,9 +6,10 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit {
+
   @Input('lengthTodo') length:number;
-  @Output('sortBy') sortBy = new EventEmitter<any>();
-  public isComplete : string ='isCompleted';
+  @Output('Filters') Filters = new EventEmitter<any>();
+  @Output('clear') clear = new EventEmitter<any>();
   filterBtn:any[]=[
     {
     title:'All',
@@ -28,12 +29,12 @@ export class FooterComponent implements OnInit {
 
 }
 ]
-handleClick(isComplete:any){
- if (isComplete === "Completed") {
-   this.sortBy.emit(this.isComplete);
- }
+handleClick(filter:any){
+   this.Filters.emit(filter);
+
 
 }
+
 
   constructor() { }
 
