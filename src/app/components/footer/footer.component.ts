@@ -7,7 +7,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
   public clears : boolean = true;
-  @Input('lengthTodo') length:number;
+  @Input('lengthTodo') length:number =0;
   @Output('Filters') Filters = new EventEmitter<any>();
   @Output('clear') clear = new EventEmitter<any>();
   filterBtn:any[]=[
@@ -30,7 +30,11 @@ export class FooterComponent implements OnInit {
 }
 ]
 handleClick(filter:any){
+  this.filterBtn.forEach(btn => {
+    btn.isActive=btn.title === filter ;
+  });
    this.Filters.emit(filter);
+
 
 }
 handleClear(){
