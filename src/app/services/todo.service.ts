@@ -7,28 +7,28 @@ import { Observable} from 'rxjs'
   providedIn: 'root'
 })
 export class TodoService {
-  private API : string ="http://localhost:3000/todoList";
+  private API : string ="http://localhost:8080/todos/";
 
   constructor(
     public http :HttpClient
   ) { }
   getAllTodo() :Observable<ToDo[]>{
-    return this.http.get<ToDo[]>(this.API);
+    return this.http.get<ToDo[]>(this.API+'list');
   }
   Addtodo(dataTodo : ToDo) :Observable<ToDo[]>{
-    return this.http.post<ToDo[]>(this.API,{
+    return this.http.post<ToDo[]>(this.API+'add',{
       id:dataTodo.id,
-      text:dataTodo.text,
-      isCompleted:dataTodo.isCompleted
+      whatToDo:dataTodo.whatToDo,
+      completed:dataTodo.completed
     });
   }
   delete(id:number):Observable<ToDo[]>{
-    return this.http.delete<ToDo[]>(`${this.API}/${id}`);
+    return this.http.delete<ToDo[]>(`${this.API}delete/${id}`);
   }
   update(todo:ToDo):Observable<ToDo[]>{
-    return this.http.put<ToDo[]>(`${this.API}/${todo.id}`,{
-      text:todo.text,
-      isCompleted:todo.isCompleted
+    return this.http.put<ToDo[]>(`${this.API}edit/${todo.id}`,{
+      whatToDo:todo.whatToDo,
+      completed:todo.completed
     });
   }
   handleError(err){

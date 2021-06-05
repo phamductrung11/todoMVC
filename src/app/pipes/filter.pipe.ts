@@ -11,10 +11,10 @@ export class FilterPipe implements PipeTransform {
       return value;
     }else{
       if (filter === "Active") {
-        value=value.filter(todo=>!todo.isCompleted)
+        value=value.filter(todo=>!todo.completed)
       }
       if (filter === "Completed") {
-        value=value.filter(todo=>todo.isCompleted)
+        value=value.filter(todo=>todo.completed)
       }
       if (filter === "All") {
         value=value.filter(todo=>({...todo}))

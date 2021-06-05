@@ -6,23 +6,22 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./todolist.component.css']
 })
 export class TodolistComponent implements OnInit {
-@Input() todoItem :any;
-@Input() Filters :string;
-@Input() ClearCompleted :string;
+@Input() todoItem :any=[];
+@Input() Filters :string="";
+@Input() clear:string="";
+@Input() ClearCompleted :string="";
 @Output('delete') delete= new EventEmitter;
 @Output('update') update = new EventEmitter;
-@Output('updateCheckBox') updateCheckBox= new EventEmitter;
+@Output('updateCheckbox') updateCheckBOX = new EventEmitter
   constructor() { }
 
   ngOnInit(): void {
-
   }
-  onUpdate(data:{text:HTMLInputElement,id:number,isCompleted:boolean}){
+  onUpdate(data:{id:number,whatToDo:HTMLInputElement,completed:boolean}){
   this.update.emit(data);
   }
-  updateCheckBoxs(item:ToDo){
-  item.isCompleted=!item.isCompleted;
-  this.updateCheckBox.emit(item);
+  updateCheckbox(item:ToDo){
+  this.updateCheckBOX.emit(item);
   }
 }
 

@@ -9,12 +9,12 @@
     <li  *ngFor="let item of filterBtn ">
       <a
           [routerLink]="['/']"
-          [class]="item.isActived ?'selected':''"
+          [class]="item.isActive ?'selected':''"
           (click)="handleClick(item.title )"
       >
       {{item.title}}
       </a>
   </li>
   </ul>
-  <button class="clear-completed"  >Clear completed</button>
+  <button *ngIf="clears" class="clear-completed" (click)="handleClear()"  >Clear completed</button>
 </footer>

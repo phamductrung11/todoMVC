@@ -12,6 +12,7 @@ import { TodolistComponent } from './components/todolist/todolist.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TaskTodoComponent } from './components/task-todo/task-todo.component';
 import { FilterPipe } from './pipes/filter.pipe';
+import { ClearCompletedPipe } from './pipes/clear-completed.pipe';
 
 
 const appRoute : Routes =[
@@ -35,7 +36,8 @@ const appRoute : Routes =[
     TodolistComponent,
     FooterComponent,
     TaskTodoComponent,
-    FilterPipe
+    FilterPipe,
+    ClearCompletedPipe
   ],
   imports: [
     BrowserModule,

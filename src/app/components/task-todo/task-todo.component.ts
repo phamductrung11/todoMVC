@@ -7,30 +7,26 @@ import {ToDo} from '../../models/todo';
   templateUrl: './task-todo.component.html',
   styleUrls: ['./task-todo.component.css']
 })
-export class TaskTodoComponent implements OnInit,OnDestroy {
+export class TaskTodoComponent implements OnInit {
   public toDo  =[];
   public length :number=0;
-  public Filter : string ;
-
+  public Filter : string ="" ;
+  public clear : string = "" ;
   public numberItems:number=0;
-  public subscription : Subscription;
+  public subscription : Subscription ;
   constructor(
     public todoService :TodoService
   ){
 
   }
-  handFilter(filter:string){
-   this.Filter=filter;
 
-
-    }
   ngOnInit(){
-    this.updateLenght();
+    this.updateLenngth();
     this.loadData();
 
   }
 
-  updateLenght(){
+  updateLenngth(){
     this.subscription = this.todoService.getAllTodo().subscribe((data : ToDo[])=>{
       this.length=data.length;
     },error=>{
@@ -41,29 +37,30 @@ export class TaskTodoComponent implements OnInit,OnDestroy {
   loadData(){
    this.subscription = this.todoService.getAllTodo().subscribe((data : ToDo[])=>{
      this.toDo=data;
+
    },error=>{
     this.todoService.handleError(error);
    });
   }
-  ngOnDestroy(){}
+
   onAddTodo(title:string){
     let dataTodo= new ToDo(title)
     this.subscription = this.todoService.Addtodo(dataTodo).subscribe((data : ToDo[]) =>{
       this.toDo.push(data)
-      this.updateLenght();
+      this.updateLenngth();
     },error=>{
      console.log(error);
     });
   }
   onDelete(id:number){
     this.subscription = this.todoService.delete(id).subscribe((data : ToDo[]) =>{
-      this.updatedataafterdelete(id);
-      this.updateLenght();
+      this.updateDelete(id);
+      this.updateLenngth();
     },error=>{
      this.todoService.handleError(error);
     });
   }
-  updatedataafterdelete(id:number){
+  updateDelete(id:number){
   for (var i = 0; i < this.toDo.length; i++) {
     if (this.toDo[i].id === id) {
       this.toDo.splice(i,1);
@@ -75,7 +72,7 @@ export class TaskTodoComponent implements OnInit,OnDestroy {
   onUpdate(data:ToDo){
     this.subscription = this.todoService.update(data).subscribe((data : ToDo[]) =>{
     this.updateTodo(data);
-    this.updateLenght();
+    this.updateLenngth();
     },error=>{
      this.todoService.handleError(error);
     });
@@ -89,7 +86,7 @@ export class TaskTodoComponent implements OnInit,OnDestroy {
 
     }
   }
-  updateCheckBoxs(data : any){
+  updateCheckbox(data : any){
     for (var i = 0; i < this.toDo.length; i++) {
       if (this.toDo[i].id === data.id) {
       this.toDo[i]= data
@@ -100,11 +97,18 @@ export class TaskTodoComponent implements OnInit,OnDestroy {
   }
   updateCheckBox(data:ToDo){
     this.subscription = this.todoService.update(data).subscribe((data : ToDo[]) =>{
-   this.updateCheckBoxs(data);
+    this.updateCheckbox(data);
       },error=>{
        this.todoService.handleError(error);
       });
   }
+  handFilter(filter:string){
+    this.Filter=filter;
+
+     }
+   handleClear(clear:string){
+      this.clear=clear;
+     }
 
 }
 

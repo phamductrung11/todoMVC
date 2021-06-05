@@ -11,7 +11,7 @@ export class TodoComponent implements OnInit {
 @Input() item;
 @Output('delete') delete= new EventEmitter
 @Output('update') update= new EventEmitter
-@Output('updateCheckBox') updateCheckBox= new EventEmitter
+@Output('UpdateCheckbox') updateCheckbox= new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {
@@ -20,8 +20,12 @@ export class TodoComponent implements OnInit {
     this.editing = true;
   }
   Onupdate(text:HTMLInputElement,item:any){
-  this.update.emit({text:text.value,id:item.id,isCompleted:item.isCompleted})
+  this.update.emit({id:item.id,whatToDo:text.value,completed:item.completed})
 
+  }
+  updateCheckBoxs(item:any){
+    item.completed=!item.completed;
+    this.updateCheckbox.emit(item);
   }
 
 

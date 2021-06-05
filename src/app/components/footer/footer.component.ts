@@ -6,25 +6,25 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit {
-
+  public clears : boolean = true;
   @Input('lengthTodo') length:number;
   @Output('Filters') Filters = new EventEmitter<any>();
   @Output('clear') clear = new EventEmitter<any>();
   filterBtn:any[]=[
     {
     title:'All',
-    isActived:true,
+    isActive:true,
     link:'',
 },
 {
     title:'Active',
-    isActived:false,
+    isActive:false,
     link:'/active',
 
 },
 {
     title:'Completed',
-    isActived:false,
+    isActive:false,
     link:'/completed',
 
 }
@@ -32,7 +32,11 @@ export class FooterComponent implements OnInit {
 handleClick(filter:any){
    this.Filters.emit(filter);
 
-
+}
+handleClear(){
+  this.clears=false;
+  console.log(this.clears);
+  this.clear.emit('clear')
 }
 
 

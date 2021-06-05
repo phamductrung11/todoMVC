@@ -1,12 +1,11 @@
 export class ToDo{
   public id:number;
-  public text:string;
-  public isCompleted:boolean;
+  public whatToDo:string;
+  public completed:boolean;
 
   constructor(title:string){
-  this.id=new Date().valueOf(),
-  this.text=title;
-  this.isCompleted=false;
+  this.whatToDo=title;
+  this.completed=false;
   }
 
 }

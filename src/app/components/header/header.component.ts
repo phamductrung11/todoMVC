@@ -8,7 +8,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 export class HeaderComponent implements OnInit {
   @Output() AddTodo = new EventEmitter;
   onAddTodo(event:HTMLInputElement){
-  this.AddTodo.emit(event.value)
+  this.AddTodo.emit(event.value);
   event.value='';
   }
   constructor() { }
